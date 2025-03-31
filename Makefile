@@ -1,4 +1,19 @@
-CC=gcc
+CC = gcc
+OBJ = common.o server.o
 
-server.c:
-	gcc -o server server.c
+all: program
+
+program: $(OBJ)
+	$(CC) -o server $(OBJ)
+
+server.o: server.c
+	$(CC) -c server.c -o server.o
+
+common.o: common.c
+	$(CC) -c common.c -o common.o 
+
+client: client.c
+	$(CC) -o client client.c
+
+clean:
+	rm -f *.o
